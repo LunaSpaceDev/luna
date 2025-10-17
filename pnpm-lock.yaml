@@ -99,6 +99,9 @@ importers:
 
   core/apps/seven:
     dependencies:
+      '@plone-collective/fortytwo':
+        specifier: 1.0.0-alpha.1
+        version: 1.0.0-alpha.1(@plone/registry@core+packages+registry)(@plone/types@core+packages+types)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@plone/agave':
         specifier: workspace:*
         version: link:../../packages/agave
@@ -1617,6 +1620,9 @@ importers:
 
   packages/luna-seven:
     dependencies:
+      '@plone-collective/fortytwo':
+        specifier: 1.0.0-alpha.1
+        version: 1.0.0-alpha.1(@plone/registry@core+packages+registry)(@plone/types@core+packages+types)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
         specifier: ^19.2.0
         version: 19.2.0
@@ -2599,6 +2605,14 @@ packages:
   '@pkgr/core@0.2.9':
     resolution: {integrity: sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
+
+  '@plone-collective/fortytwo@1.0.0-alpha.1':
+    resolution: {integrity: sha512-oILEiAjnYUFV3/woTUrzHkAJsg5yXEgdIzh0bOSnVzh/ulL35LCSVopqr/KbmOVqitSJXhicH0sQiSf+s8Bj6Q==}
+    peerDependencies:
+      '@plone/registry': 2.5.4
+      '@plone/types': 1.4.5
+      react: ^19.2.0
+      react-dom: ^19.2.0
 
   '@radix-ui/number@1.1.1':
     resolution: {integrity: sha512-MkKCwxlXTgz6CFoJx3pCwn07GKp36+aZyu/u2Ln2VrA5DcdyCZkASEDBTd8x5whTQQL5CiYf4prXKLcgQdv29g==}
@@ -11403,6 +11417,14 @@ snapshots:
     optional: true
 
   '@pkgr/core@0.2.9': {}
+
+  '@plone-collective/fortytwo@1.0.0-alpha.1(@plone/registry@core+packages+registry)(@plone/types@core+packages+types)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@plone/registry': link:core/packages/registry
+      '@plone/types': link:core/packages/types
+      query-string: 9.3.1
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   '@radix-ui/number@1.1.1': {}
 

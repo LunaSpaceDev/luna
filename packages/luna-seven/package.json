@@ -26,7 +26,9 @@
     "release-major-alpha": "release-it major --preRelease=alpha",
     "release-alpha": "release-it --preRelease=alpha"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@plone-collective/fortytwo": "1.0.0-alpha.1"
+  },
   "peerDependencies": {
     "react": "catalog:",
     "react-dom": "catalog:"
