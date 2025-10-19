@@ -99,9 +99,6 @@ importers:
 
   core/apps/seven:
     dependencies:
-      '@plone-collective/fortytwo':
-        specifier: 1.0.0-alpha.1
-        version: 1.0.0-alpha.1(@plone/registry@core+packages+registry)(@plone/types@core+packages+types)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@plone/agave':
         specifier: workspace:*
         version: link:../../packages/agave
@@ -1623,6 +1620,9 @@ importers:
       '@plone-collective/fortytwo':
         specifier: 1.0.0-alpha.1
         version: 1.0.0-alpha.1(@plone/registry@core+packages+registry)(@plone/types@core+packages+types)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@plone/client':
+        specifier: workspace:*
+        version: link:../../core/packages/client
       react:
         specifier: ^19.2.0
         version: 19.2.0
