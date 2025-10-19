@@ -1,203 +1,314 @@
-# Luna (@lunaspace/luna)
+# Luna
 
-Luna
+> A modern Plone Distribution powered by Volto Seven and Nick CMS
 
 [![npm](https://img.shields.io/npm/v/@lunaspace/luna)](https://www.npmjs.com/package/@lunaspace/luna)
 [![](https://img.shields.io/badge/-Storybook-ff4785?logo=Storybook&logoColor=white&style=flat-square)](https://LunaSpaceDev.github.io/luna/)
 [![Code analysis checks](https://github.com/LunaSpaceDev/luna/actions/workflows/code.yml/badge.svg)](https://github.com/LunaSpaceDev/luna/actions/workflows/code.yml)
 [![Unit tests](https://github.com/LunaSpaceDev/luna/actions/workflows/unit.yml/badge.svg)](https://github.com/LunaSpaceDev/luna/actions/workflows/unit.yml)
 
-## Features
+Luna is a modern, high-performance Plone distribution that combines the power of [Volto Seven](https://github.com/plone/volto/tree/seven) — the latest React-based frontend for Plone — with [Nick CMS](https://nickcms.org/), a blazing-fast headless CMS built on Node.js and PostgreSQL.
 
-<!-- List your awesome features here -->
+## What is Luna?
 
-## Installation
+Luna represents the next generation of content management by bringing together:
 
-To install your project, you must choose the method appropriate to your version of Volto.
+- **Volto Seven**: The cutting-edge React frontend for Plone featuring a modern block-based editor (Pastanaga), modular architecture, and extensive customization capabilities
+- **Nick CMS**: A high-performance headless CMS built with Node.js, offering a RESTful hypermedia API, hierarchical content management, and enterprise-grade security
 
+This combination delivers the flexibility and developer experience of modern JavaScript frameworks with the robustness and content management capabilities that Plone users expect.
 
-### Volto 17 and earlier
+## Key Features
 
-Create a new Volto project (you can skip this step if you already have one):
+- **Modern React Frontend**: Built on Volto Seven with the Pastanaga block-based editor
+- **High Performance**: Nick CMS backend powered by Node.js and PostgreSQL for optimal speed
+- **Seamless Integration**: Pre-configured to work with Nick CMS's API structure (no `++api++` prefix required)
+- **Hierarchical Content**: Tree-based content structure that naturally maps to site navigation and URLs
+- **Enterprise Security**: Comprehensive role-based access control, permissions, and workflow management
+- **Content Versioning**: Full revision history and rollback capabilities
+- **Internationalization**: Built-in i18n support for multilingual content
+- **Extensible**: Leverage Volto's addon ecosystem to extend functionality
+- **Developer Friendly**: Modern tooling with TypeScript, pnpm workspaces, and hot reloading
 
-```
-npm install -g yo @plone/generator-volto
-yo @plone/volto my-volto-project --addon @lunaspace/luna
-cd my-volto-project
-```
+## Quick Start
 
-Add `@lunaspace/luna` to your package.json:
+### Prerequisites
 
-```JSON
-"addons": [
-    "@lunaspace/luna"
-],
+Before you begin, ensure you have the following installed:
 
-"dependencies": {
-    "@lunaspace/luna": "*"
-}
-```
+- [Node.js](https://nodejs.org/) (v20 or later)
+- [pnpm](https://pnpm.io/) (v10.10.0 or later)
+- [PostgreSQL](https://www.postgresql.org/) (for Nick CMS backend)
+- [Docker](https://www.docker.com/) (optional, for containerized deployment)
 
-Download and install the new add-on by running:
+### Installation
 
-```
-yarn install
-```
+1. **Clone the repository**
 
-Start volto with:
-
-```
-yarn start
-```
-
-### Volto 18 and later
-
-Add `@lunaspace/luna` to your `package.json`:
-
-```json
-"dependencies": {
-    "@lunaspace/luna": "*"
-}
+```bash
+git clone https://github.com/LunaSpaceDev/luna.git
+cd luna
 ```
 
-Add `@lunaspace/luna` to your `volto.config.js`:
+2. **Install dependencies**
+
+```bash
+pnpm install
+```
+
+3. **Set up Nick CMS backend**
+
+Follow the [Nick CMS installation guide](https://nickcms.org/) to set up your backend server with PostgreSQL.
+
+4. **Start the development server**
+
+```bash
+PLONE_API_PATH=http://localhost:8080 pnpm start
+```
+
+Replace `http://localhost:8080` with your Nick CMS backend URL.
+
+5. **Access Luna**
+
+Visit [http://localhost:3000](http://localhost:3000) in your browser to see Luna in action.
+
+## Using Luna as an Add-on
+
+You can also use Luna as an add-on in your existing Volto project:
+
+### Add to your project
+
+```bash
+pnpm add @lunaspace/luna
+```
+
+### Configure in your project
+
+Add `@lunaspace/luna` to your add-ons configuration:
 
 ```javascript
-const addons = ['@lunaspace/luna'];
+// registry.config.ts
+import { addons } from '@plone/registry';
+
+addons.push('@lunaspace/luna');
+
+export { addons };
 ```
-
-If this package provides a Volto theme, and you want to activate it, then add the following to your `volto.config.js`:
-
-```javascript
-const theme = '@lunaspace/luna';
-```
-
-## Test installation
-
-Visit http://localhost:3000/ in a browser, login, and check the awesome new features.
 
 
 ## Development
 
-The development of this add-on is done in isolation using a new approach using pnpm workspaces and latest `mrs-developer` and other Volto core improvements.
-For this reason, it only works with pnpm and Volto 18 (currently in alpha).
+Luna is developed using modern JavaScript tooling with pnpm workspaces, TypeScript, and follows best practices for Volto Seven development.
 
+### Development Setup
 
-### Pre-requisites
+1. **Install dependencies**
 
--   [Node.js](https://6.docs.plone.org/install/create-project.html#node-js)
--   [Make](https://6.docs.plone.org/install/create-project.html#make)
--   [Docker](https://6.docs.plone.org/install/create-project.html#docker)
-
-
-### Make convenience commands
-
-Run `make help` to list the available commands.
-
-```text
-help                             Show this help
-install                          Installs the add-on in a development environment
-start                            Starts Volto, allowing reloading of the add-on during development
-build                            Build a production bundle for distribution of the project with the add-on
-i18n                             Sync i18n
-ci-i18n                          Check if i18n is not synced
-format                           Format codebase
-lint                             Lint, or catch and remove problems, in code base
-release                          Release the add-on on npmjs.org
-release-dry-run                  Dry-run the release of the add-on on npmjs.org
-test                             Run unit tests
-ci-test                          Run unit tests in CI
-backend-docker-start             Starts a Docker-based backend for development
-storybook-start                  Start Storybook server on port 6006
-storybook-build                  Build Storybook
-acceptance-frontend-dev-start    Start acceptance frontend in development mode
-acceptance-frontend-prod-start   Start acceptance frontend in production mode
-acceptance-backend-start         Start backend acceptance server
-ci-acceptance-backend-start      Start backend acceptance server in headless mode for CI
-acceptance-test                  Start Cypress in interactive mode
-ci-acceptance-test               Run cypress tests in headless mode for CI
-```
-
-### Development environment set up
-
-Install package requirements.
-
-```shell
+```bash
 make install
 ```
 
-### Start developing
+This will install all required packages and build dependencies.
 
-Start the backend.
+2. **Start development server**
 
-```shell
-make backend-docker-start
-```
-
-In a separate terminal session, start the frontend.
-
-```shell
+```bash
 make start
 ```
 
-### Lint code
+or
 
-Run ESlint, Prettier, and Stylelint in analyze mode.
+```bash
+pnpm start
+```
 
-```shell
+This starts the Volto development server with hot reloading enabled.
+
+3. **Build for production**
+
+```bash
+make build
+```
+
+or
+
+```bash
+pnpm build
+```
+
+### Available Commands
+
+Luna provides convenient `make` commands for common development tasks:
+
+| Command | Description |
+|---------|-------------|
+| `make help` | Show all available commands |
+| `make install` | Install dependencies in development environment |
+| `make start` | Start Volto development server with hot reloading |
+| `make build` | Build production bundle |
+| `make i18n` | Sync internationalization messages |
+| `make format` | Format codebase (ESLint, Prettier, Stylelint) |
+| `make lint` | Lint codebase and check for problems |
+| `make test` | Run unit tests |
+| `make storybook-start` | Start Storybook server on port 6006 |
+| `make storybook-build` | Build Storybook for deployment |
+
+### Code Quality
+
+**Linting**
+
+Run ESLint, Prettier, and Stylelint in analyze mode:
+
+```bash
 make lint
 ```
 
-### Format code
+**Formatting**
 
-Run ESlint, Prettier, and Stylelint in fix mode.
+Auto-fix code formatting issues:
 
-```shell
+```bash
 make format
 ```
 
-### i18n
+**Testing**
 
-Extract the i18n messages to locales.
+Run the test suite:
 
-```shell
-make i18n
-```
-
-### Unit tests
-
-Run unit tests.
-
-```shell
+```bash
 make test
 ```
 
-### Run Cypress tests
+### Internationalization
 
-Run each of these steps in separate terminal sessions.
+Extract and sync i18n messages:
 
-In the first session, start the frontend in development mode.
-
-```shell
-make acceptance-frontend-dev-start
+```bash
+make i18n
 ```
 
-In the second session, start the backend acceptance server.
+### Storybook
 
-```shell
-make acceptance-backend-start
+Luna uses Storybook to document and showcase components:
+
+**Start Storybook development server:**
+
+```bash
+make storybook-start
 ```
 
-In the third session, start the Cypress interactive test runner.
+**Build Storybook for production:**
 
-```shell
-make acceptance-test
+```bash
+make storybook-build
 ```
+
+## Architecture
+
+Luna's architecture combines the best of modern web development:
+
+```
+┌─────────────────────────────────────────┐
+│           Luna Distribution             │
+├─────────────────────────────────────────┤
+│                                         │
+│  ┌───────────────────────────────────┐  │
+│  │      Volto Seven Frontend         │  │
+│  │  - React 19                       │  │
+│  │  - Pastanaga Editor               │  │
+│  │  - Block-based Layouts            │  │
+│  │  - TypeScript                     │  │
+│  └───────────┬───────────────────────┘  │
+│              │                          │
+│              │ REST API                 │
+│              │                          │
+│  ┌───────────▼───────────────────────┐  │
+│  │       Nick CMS Backend            │  │
+│  │  - Node.js                        │  │
+│  │  - PostgreSQL                     │  │
+│  │  - Hypermedia API                 │  │
+│  │  - Content Versioning             │  │
+│  └───────────────────────────────────┘  │
+│                                         │
+└─────────────────────────────────────────┘
+```
+
+### How Luna Works with Nick CMS
+
+Luna includes a custom server configuration (`packages/luna/config/server.ts`) that configures the Plone Client to work seamlessly with Nick CMS:
+
+- Removes the `++api++` prefix requirement (Nick CMS uses direct API paths)
+- Optimizes API communication for Nick CMS's hypermedia structure
+- Maintains full compatibility with Volto Seven's features and conventions
+
+## Project Structure
+
+```
+luna/
+├── packages/
+│   └── luna/              # Main Luna package
+│       ├── config/        # Configuration files
+│       │   └── server.ts  # Nick CMS integration config
+│       ├── locales/       # i18n translations
+│       ├── public/        # Static assets
+│       └── index.ts       # Main entry point
+├── core/                  # Volto Seven core (git submodule)
+├── registry.config.ts     # Volto addon registry
+├── package.json           # Project dependencies
+└── Makefile              # Development commands
+```
+
+## Contributing
+
+We welcome contributions from the community! Here's how you can help:
+
+1. **Fork the repository**
+2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
+3. **Make your changes** and ensure tests pass
+4. **Commit your changes** (`git commit -m 'Add amazing feature'`)
+5. **Push to your fork** (`git push origin feature/amazing-feature`)
+6. **Open a Pull Request**
+
+### Development Guidelines
+
+- Follow the existing code style (use `make format` to auto-format)
+- Write tests for new features
+- Update documentation as needed
+- Ensure all tests pass before submitting PR
+
+## Community and Support
+
+- **Issues**: [GitHub Issues](https://github.com/LunaSpaceDev/luna/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/LunaSpaceDev/luna/discussions)
+- **Documentation**: [Luna Docs](https://LunaSpaceDev.github.io/luna/)
+
+## Roadmap
+
+- [ ] Enhanced Nick CMS integration features
+- [ ] Additional Volto Seven block types
+- [ ] Performance optimization suite
+- [ ] Extended documentation and tutorials
+- [ ] Example projects and starter templates
+
+## Related Projects
+
+- [Volto](https://github.com/plone/volto) - React-based frontend for Plone
+- [Nick CMS](https://nickcms.org/) - High-performance headless CMS
+- [Plone](https://plone.org/) - Enterprise-grade CMS
 
 ## License
 
-The project is licensed under the MIT license.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Credits and Acknowledgements 🙏
+## Credits and Acknowledgements
 
-Crafted with care by **Generated using [Cookieplone (0.9.9)](https://github.com/plone/cookieplone) and [cookieplone-templates (62683ae)](https://github.com/plone/cookieplone-templates/commit/62683aec96c2b6454cc32e06e57910fab3d52425) on 2025-10-17 14:51:45.272254**. A special thanks to all contributors and supporters!
+Luna is built on the shoulders of giants. Special thanks to:
+
+- The Plone community for decades of CMS innovation
+- The Volto Seven team for the modern React frontend
+- The Nick CMS team for the high-performance backend
+- All contributors and supporters of the Luna project
+
+---
+
+Made with ❤️ by [Luna Space](https://github.com/LunaSpaceDev)
