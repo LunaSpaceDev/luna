@@ -1,11 +1,11 @@
-# Luna Seven (luna-seven)
+# Luna (@lunaspace/luna)
 
-Luna with Seven
+Luna
 
-[![npm](https://img.shields.io/npm/v/luna-seven)](https://www.npmjs.com/package/luna-seven)
-[![](https://img.shields.io/badge/-Storybook-ff4785?logo=Storybook&logoColor=white&style=flat-square)](https://LunaSpaceDev.github.io/luna-seven/)
-[![Code analysis checks](https://github.com/LunaSpaceDev/luna-seven/actions/workflows/code.yml/badge.svg)](https://github.com/LunaSpaceDev/luna-seven/actions/workflows/code.yml)
-[![Unit tests](https://github.com/LunaSpaceDev/luna-seven/actions/workflows/unit.yml/badge.svg)](https://github.com/LunaSpaceDev/luna-seven/actions/workflows/unit.yml)
+[![npm](https://img.shields.io/npm/v/@lunaspace/luna)](https://www.npmjs.com/package/@lunaspace/luna)
+[![](https://img.shields.io/badge/-Storybook-ff4785?logo=Storybook&logoColor=white&style=flat-square)](https://LunaSpaceDev.github.io/luna/)
+[![Code analysis checks](https://github.com/LunaSpaceDev/luna/actions/workflows/code.yml/badge.svg)](https://github.com/LunaSpaceDev/luna/actions/workflows/code.yml)
+[![Unit tests](https://github.com/LunaSpaceDev/luna/actions/workflows/unit.yml/badge.svg)](https://github.com/LunaSpaceDev/luna/actions/workflows/unit.yml)
 
 ## Features
 
@@ -22,19 +22,19 @@ Create a new Volto project (you can skip this step if you already have one):
 
 ```
 npm install -g yo @plone/generator-volto
-yo @plone/volto my-volto-project --addon luna-seven
+yo @plone/volto my-volto-project --addon @lunaspace/luna
 cd my-volto-project
 ```
 
-Add `luna-seven` to your package.json:
+Add `@lunaspace/luna` to your package.json:
 
 ```JSON
 "addons": [
-    "luna-seven"
+    "@lunaspace/luna"
 ],
 
 "dependencies": {
-    "luna-seven": "*"
+    "@lunaspace/luna": "*"
 }
 ```
 
@@ -52,24 +52,24 @@ yarn start
 
 ### Volto 18 and later
 
-Add `luna-seven` to your `package.json`:
+Add `@lunaspace/luna` to your `package.json`:
 
 ```json
 "dependencies": {
-    "luna-seven": "*"
+    "@lunaspace/luna": "*"
 }
 ```
 
-Add `luna-seven` to your `volto.config.js`:
+Add `@lunaspace/luna` to your `volto.config.js`:
 
 ```javascript
-const addons = ['luna-seven'];
+const addons = ['@lunaspace/luna'];
 ```
 
 If this package provides a Volto theme, and you want to activate it, then add the following to your `volto.config.js`:
 
 ```javascript
-const theme = 'luna-seven';
+const theme = '@lunaspace/luna';
 ```
 
 ## Test installation

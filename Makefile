@@ -25,7 +25,7 @@ PLONE_VERSION=6
 DOCKER_IMAGE=plone/server-dev:${PLONE_VERSION}
 DOCKER_IMAGE_ACCEPTANCE=plone/server-acceptance:${PLONE_VERSION}
 
-ADDON_NAME='luna-seven'
+ADDON_NAME='@lunaspace/luna'
 
 .PHONY: help
 help: ## Show this help

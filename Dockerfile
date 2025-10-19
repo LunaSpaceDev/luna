@@ -2,7 +2,7 @@
 ARG VOLTO_VERSION
 FROM plone/frontend-builder:${VOLTO_VERSION} AS builder
 
-COPY --chown=node packages/luna-seven /app/packages/luna-seven
+COPY --chown=node packages/luna /app/packages/luna
 COPY --chown=node registry.config.ts /app/
 COPY --chown=node Makefile /app/Makefile
 COPY --chown=node pnpm-workspace.yaml /app/pnpm-workspace.yaml
@@ -22,8 +22,8 @@ EOT
 FROM plone/frontend-prod-config:${VOLTO_VERSION}
 
 LABEL maintainer="Luna Space <comunity@lunaspace.dev>" \
-      org.label-schema.name="luna-seven-frontend" \
-      org.label-schema.description="Luna Seven frontend image." \
+      org.label-schema.name="luna-frontend" \
+      org.label-schema.description="Luna frontend image." \
       org.label-schema.vendor="Luna Space"
 
 COPY --from=builder /app/ /app/

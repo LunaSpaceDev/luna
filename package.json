@@ -1,9 +1,9 @@
 {
-  "name": "luna-seven-dev",
+  "name": "@lunaspace/luna-dev",
   "version": "1.0.0",
-  "description": "Luna with Seven",
+  "description": "Luna",
   "author": "Luna Space",
-  "homepage": "https://github.com/LunaSpaceDev/luna-seven",
+  "homepage": "https://github.com/LunaSpaceDev/luna",
   "license": "MIT",
   "keywords": [
     "volto-addon",
@@ -18,25 +18,25 @@
     "start:prod": "pnpm --filter seven start:prod",
     "build": "REGISTRYCONFIG=$(pwd)/registry.config.ts pnpm --filter seven build",
     "build:deps": "pnpm --filter @plone/registry --filter @plone/components build",
-    "i18n": "pnpm --filter luna-seven i18n && VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto i18n",
-    "test": "pnpm --filter luna-seven exec vitest --passWithNoTests",
+    "i18n": "pnpm --filter @lunaspace/luna i18n && VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto i18n",
+    "test": "pnpm --filter @lunaspace/luna exec vitest --passWithNoTests",
     "lint": "REGISTRYCONFIG=$(pwd)/registry.config.ts eslint --max-warnings=0 'packages/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "REGISTRYCONFIG=$(pwd)/registry.config.ts eslint --fix 'packages/**/*.{js,jsx,ts,tsx}'",
     "prettier": "prettier --check 'packages/**/*.{js,jsx,ts,tsx}'",
     "prettier:fix": "prettier --write 'packages/**/*.{js,jsx,ts,tsx}' ",
     "stylelint": "stylelint 'packages/**/*.{css,scss,less}' --allow-empty-input",
     "stylelint:fix": "stylelint 'packages/**/*.{css,scss,less}' --fix --allow-empty-input",
-    "dry-release": "pnpm --filter luna-seven dry-release",
-    "release": "pnpm --filter luna-seven release",
-    "release-major-alpha": "pnpm --filter luna-seven release-major-alpha",
-    "release-alpha": "pnpm --filter luna-seven release-alpha",
+    "dry-release": "pnpm --filter @lunaspace/luna dry-release",
+    "release": "pnpm --filter @lunaspace/luna release",
+    "release-major-alpha": "pnpm --filter @lunaspace/luna release-major-alpha",
+    "release-alpha": "pnpm --filter @lunaspace/luna release-alpha",
     "storybook": "VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto storybook dev -p 6006 -c $(pwd)/.storybook",
     "storybook-build": "VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto build-storybook -c $(pwd)/.storybook"
   },
   "dependencies": {
     "@plone/registry": "workspace:*",
     "seven": "workspace:*",
-    "luna-seven": "workspace:*"
+    "@lunaspace/luna": "workspace:*"
   },
   "devDependencies": {
     "mrs-developer": "^2.2.0"

@@ -1,7 +1,7 @@
 {
-  "name": "luna-seven",
+  "name": "@lunaspace/luna",
   "version": "1.0.0",
-  "description": "Luna with Seven",
+  "description": "Luna",
   "main": "index.ts",
   "license": "MIT",
   "keywords": [
@@ -11,10 +11,10 @@
     "react"
   ],
   "author": "Luna Space",
-  "homepage": "https://github.com/LunaSpaceDev/luna-seven#readme",
+  "homepage": "https://github.com/LunaSpaceDev/luna#readme",
   "repository": {
     "type": "git",
-    "url": "git@github.com:LunaSpaceDev/luna-seven.git"
+    "url": "git@github.com:LunaSpaceDev/luna.git"
   },
   "publishConfig": {
     "access": "public"
