@@ -33,15 +33,43 @@ help: ## Show this help
 
 # Dev Helpers
 
-.PHONY: install
-install: ## Installs the add-on in a development environment
-	@echo "$(GREEN)Install$(RESET)"
+.PHONY: install-backend
+install-backend: ## Installs Plone Backend in a development environment
+	${MAKE} -C ./backend/ install
+	${MAKE} -C ./backend/ create-site
+
+.PHONY: install-frontend
+install-frontend: ## Installs Plone Frontend/Volto in a development environment
+	${MAKE} -C ./frontend/ install
+
+.PHONY: install-seven
+install-seven: ## Installs Plone Frontend/Seven in a development environment
+	@echo "$(GREEN)Install Seven$(RESET)"
 	pnpm dlx mrs-developer missdev --no-config --fetch-https
 	pnpm i
 	make build-deps
 
-.PHONY: start
-start: ## Starts Volto, allowing reloading of the add-on during development
+.PHONY: install
+install: ## Installs Plone Backend, Frontend Volto and Seven in a development environment
+	${MAKE} install-backend
+	${MAKE} install-frontend
+	${MAKE} install-seven
+
+.PHONY: start-backend
+start-backend: ## Starts Plone Backend for development
+	${MAKE} -C ./backend/ start
+
+
+.PHONY: start-frontend
+start-frontend: ## Starts Volto on port 4000
+	PORT=4000 ADDONS=@plone-collective/fortytwo ${MAKE} -C ./frontend/ start
+
+PHONY: start-volto
+start-volto: ## Starts Volto on port 3000
+	${MAKE} -C ./frontend/ start
+
+.PHONY: start-seven
+start-seven: ## Starts Seven on port 3000
 	pnpm start
 
 .PHONY: build

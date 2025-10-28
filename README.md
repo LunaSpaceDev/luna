@@ -1,13 +1,13 @@
 # Luna
 
-> A modern Plone Distribution powered by Volto Seven and Nick CMS
+> A modern Plone Distribution powered by Plone Seven and Nick CMS
 
 [![npm](https://img.shields.io/npm/v/@lunaspace/luna)](https://www.npmjs.com/package/@lunaspace/luna)
 [![](https://img.shields.io/badge/-Storybook-ff4785?logo=Storybook&logoColor=white&style=flat-square)](https://LunaSpaceDev.github.io/luna/)
 [![Code analysis checks](https://github.com/LunaSpaceDev/luna/actions/workflows/code.yml/badge.svg)](https://github.com/LunaSpaceDev/luna/actions/workflows/code.yml)
 [![Unit tests](https://github.com/LunaSpaceDev/luna/actions/workflows/unit.yml/badge.svg)](https://github.com/LunaSpaceDev/luna/actions/workflows/unit.yml)
 
-Luna is a modern, high-performance Plone distribution that combines the power of [Volto Seven](https://github.com/plone/volto/tree/seven) — the latest React-based frontend for Plone — with [Nick CMS](https://nickcms.org/), a blazing-fast headless CMS built on Node.js and PostgreSQL.
+Luna is a modern, high-performance Plone distribution that combines the power of [Plone Seven](https://github.com/plone/volto/tree/seven) — the latest React-based frontend for Plone — with [Nick CMS](https://nickcms.org/), a blazing-fast headless CMS built on Node.js and PostgreSQL.
 
 ## What is Luna?
 
@@ -41,6 +41,21 @@ Before you begin, ensure you have the following installed:
 - [PostgreSQL](https://www.postgresql.org/) (for Nick CMS backend)
 - [Docker](https://www.docker.com/) (optional, for containerized deployment)
 
+### Installation (Nick backend)
+
+> WORK IN PROGRESS - Skip it for now
+
+1. **Set up Nick CMS backend**
+
+Follow the [Nick CMS installation guide](https://nickcms.org/) to set up your backend server with PostgreSQL.
+
+2. **Start the development server**
+
+```bash
+pnpm install
+PLONE_API_PATH=http://localhost:8080 pnpm start
+```
+
 ### Installation
 
 1. **Clone the repository**
@@ -50,23 +65,27 @@ git clone https://github.com/LunaSpaceDev/luna.git
 cd luna
 ```
 
-2. **Install dependencies**
+2. **Set up Plone backend**
 
 ```bash
-pnpm install
+make install-backend
+make start-backend
 ```
 
-3. **Set up Nick CMS backend**
+3. **Set up Plone frontend**
 
-Follow the [Nick CMS installation guide](https://nickcms.org/) to set up your backend server with PostgreSQL.
+```
+make install-frontend
+make start-frontend
+```
 
-4. **Start the development server**
+3. **Set up Plone Seven**
 
 ```bash
-PLONE_API_PATH=http://localhost:8080 pnpm start
+make install-seven
+make start-seven
 ```
 
-Replace `http://localhost:8080` with your Nick CMS backend URL.
 
 5. **Access Luna**
 
@@ -95,47 +114,6 @@ addons.push('@lunaspace/luna');
 export { addons };
 ```
 
-
-## Development
-
-Luna is developed using modern JavaScript tooling with pnpm workspaces, TypeScript, and follows best practices for Volto Seven development.
-
-### Development Setup
-
-1. **Install dependencies**
-
-```bash
-make install
-```
-
-This will install all required packages and build dependencies.
-
-2. **Start development server**
-
-```bash
-make start
-```
-
-or
-
-```bash
-pnpm start
-```
-
-This starts the Volto development server with hot reloading enabled.
-
-3. **Build for production**
-
-```bash
-make build
-```
-
-or
-
-```bash
-pnpm build
-```
-
 ### Available Commands
 
 Luna provides convenient `make` commands for common development tasks:
@@ -143,15 +121,7 @@ Luna provides convenient `make` commands for common development tasks:
 | Command | Description |
 |---------|-------------|
 | `make help` | Show all available commands |
-| `make install` | Install dependencies in development environment |
-| `make start` | Start Volto development server with hot reloading |
-| `make build` | Build production bundle |
-| `make i18n` | Sync internationalization messages |
-| `make format` | Format codebase (ESLint, Prettier, Stylelint) |
-| `make lint` | Lint codebase and check for problems |
-| `make test` | Run unit tests |
-| `make storybook-start` | Start Storybook server on port 6006 |
-| `make storybook-build` | Build Storybook for deployment |
+
 
 ### Code Quality
 
@@ -203,36 +173,6 @@ make storybook-start
 make storybook-build
 ```
 
-## Architecture
-
-Luna's architecture combines the best of modern web development:
-
-```
-┌─────────────────────────────────────────┐
-│           Luna Distribution             │
-├─────────────────────────────────────────┤
-│                                         │
-│  ┌───────────────────────────────────┐  │
-│  │      Volto Seven Frontend         │  │
-│  │  - React 19                       │  │
-│  │  - Pastanaga Editor               │  │
-│  │  - Block-based Layouts            │  │
-│  │  - TypeScript                     │  │
-│  └───────────┬───────────────────────┘  │
-│              │                          │
-│              │ REST API                 │
-│              │                          │
-│  ┌───────────▼───────────────────────┐  │
-│  │       Nick CMS Backend            │  │
-│  │  - Node.js                        │  │
-│  │  - PostgreSQL                     │  │
-│  │  - Hypermedia API                 │  │
-│  │  - Content Versioning             │  │
-│  └───────────────────────────────────┘  │
-│                                         │
-└─────────────────────────────────────────┘
-```
-
 ### How Luna Works with Nick CMS
 
 Luna includes a custom server configuration (`packages/luna/config/server.ts`) that configures the Plone Client to work seamlessly with Nick CMS:
@@ -240,23 +180,6 @@ Luna includes a custom server configuration (`packages/luna/config/server.ts`) t
 - Removes the `++api++` prefix requirement (Nick CMS uses direct API paths)
 - Optimizes API communication for Nick CMS's hypermedia structure
 - Maintains full compatibility with Volto Seven's features and conventions
-
-## Project Structure
-
-```
-luna/
-├── packages/
-│   └── luna/              # Main Luna package
-│       ├── config/        # Configuration files
-│       │   └── server.ts  # Nick CMS integration config
-│       ├── locales/       # i18n translations
-│       ├── public/        # Static assets
-│       └── index.ts       # Main entry point
-├── core/                  # Volto Seven core (git submodule)
-├── registry.config.ts     # Volto addon registry
-├── package.json           # Project dependencies
-└── Makefile              # Development commands
-```
 
 ## Contributing
 

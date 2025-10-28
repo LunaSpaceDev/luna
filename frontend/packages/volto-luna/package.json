@@ -1,0 +1,43 @@
+{
+  "name": "volto-luna",
+  "version": "1.0.0-alpha.0",
+  "description": "Luna Distribution",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "keywords": [
+    "volto-addon",
+    "volto",
+    "plone",
+    "react"
+  ],
+  "author": "Luna Space",
+  "homepage": "https://github.com/lunaspacedev/luna#readme",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lunaspacedev/luna"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "i18n": "rm -rf build/messages && NODE_ENV=production i18n --addon",
+    "dry-release": "release-it --dry-run",
+    "release": "release-it",
+    "release-major-alpha": "release-it major --preRelease=alpha",
+    "release-alpha": "release-it --preRelease=alpha"
+  },
+  "addons": [],
+  "dependencies": {
+    "@plone/registry": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "@plone/registry": "workspace:*",
+    "@plone/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@plone/scripts": "workspace:*",
+    "release-it": "^17.1.1"
+  }
+}

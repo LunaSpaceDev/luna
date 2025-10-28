@@ -36,7 +36,8 @@
   "dependencies": {
     "@plone/registry": "workspace:*",
     "seven": "workspace:*",
-    "@lunaspace/luna": "workspace:*"
+    "@lunaspace/luna": "workspace:*",
+    "@plone-collective/fortytwo": "*"
   },
   "devDependencies": {
     "mrs-developer": "^2.2.0"

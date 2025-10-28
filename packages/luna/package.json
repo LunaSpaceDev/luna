@@ -26,9 +26,10 @@
     "release-major-alpha": "release-it major --preRelease=alpha",
     "release-alpha": "release-it --preRelease=alpha"
   },
-  "addons": [],
+  "addons": ["@plone-collective/fortytwo"],
   "dependencies": {
-    "@plone/client": "workspace:*"
+    "@plone/client": "workspace:*",
+    "@plone-collective/fortytwo": "*"
   },
   "peerDependencies": {
     "react": "catalog:",
